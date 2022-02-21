@@ -7,6 +7,7 @@ class storageAdapter {
   }
 
   async read() {
+    console.log(__dirname)
     const result = await fs.readFile(join(__dirname, this.file), 'utf8')
     return JSON.parse(result)
   }
