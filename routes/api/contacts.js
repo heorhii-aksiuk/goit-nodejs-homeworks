@@ -19,11 +19,18 @@ router.get('/:contactId', async (req, res, next) => {
 })
 
 router.post('/', async (req, res, next) => {
-  res.json({ message: 'template message' })
+  const newContact = await contactsModel.addContact(req.body)
+  res.status(201).json({ status: 'success', code: 201, data: { newContact } })
 })
 
 router.delete('/:contactId', async (req, res, next) => {
-  res.json({ message: 'template message' })
+  const deletedContact = await contactsModel.removeContact(req.params.contactId)
+  if (deletedContact) {
+    return res.json({ status: 'success', code: 200, data: { deletedContact } })
+  }
+  return res
+    .status(404)
+    .json({ status: 'error', code: 404, message: 'Not Found' })
 })
 
 router.put('/:contactId', async (req, res, next) => {
