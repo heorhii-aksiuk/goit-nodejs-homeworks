@@ -34,7 +34,16 @@ router.delete('/:contactId', async (req, res, next) => {
 })
 
 router.put('/:contactId', async (req, res, next) => {
-  res.json({ message: 'template message' })
+  const updatedContact = await contactsModel.updateContact(
+    req.params.contactId,
+    req.body,
+  )
+  if (updatedContact) {
+    return res.json({ status: 'success', code: 200, data: { updatedContact } })
+  }
+  return res
+    .status(404)
+    .json({ status: 'error', code: 404, message: 'Not Found' })
 })
 
 module.exports = router
