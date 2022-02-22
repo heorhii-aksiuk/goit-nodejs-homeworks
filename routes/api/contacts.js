@@ -15,35 +15,57 @@ router.get('/:contactId', async (req, res, next) => {
   }
   return res
     .status(404)
-    .json({ status: 'error', code: 404, message: 'Not Found' })
+    .json({ status: 'error', code: 404, message: 'Not found' })
 })
 
 router.post('/', async (req, res, next) => {
-  const newContact = await contactsModel.addContact(req.body)
-  res.status(201).json({ status: 'success', code: 201, data: { newContact } })
+  if (req.body.name && req.body.email && req.body.phone) {
+    const newContact = await contactsModel.addContact(req.body)
+    return res
+      .status(201)
+      .json({ status: 'success', code: 201, data: { newContact } })
+  }
+  return res.status(400).json({
+    status: 'error',
+    code: 400,
+    message: 'Missing required name field',
+  })
 })
 
 router.delete('/:contactId', async (req, res, next) => {
   const deletedContact = await contactsModel.removeContact(req.params.contactId)
   if (deletedContact) {
-    return res.json({ status: 'success', code: 200, data: { deletedContact } })
+    return res.json({
+      status: 'success',
+      code: 200,
+      message: 'Contact deleted',
+    })
   }
   return res
     .status(404)
-    .json({ status: 'error', code: 404, message: 'Not Found' })
+    .json({ status: 'error', code: 404, message: 'Not found' })
 })
 
 router.put('/:contactId', async (req, res, next) => {
+  if (!req.body.name && !req.body.email && !req.body.phone) {
+    return res.status(400).json({
+      status: 'error',
+      code: 400,
+      message: 'Missing required name field',
+    })
+  }
   const updatedContact = await contactsModel.updateContact(
     req.params.contactId,
     req.body,
   )
   if (updatedContact) {
-    return res.json({ status: 'success', code: 200, data: { updatedContact } })
+    return res
+      .status(201)
+      .json({ status: 'success', code: 200, data: { updatedContact } })
   }
   return res
     .status(404)
-    .json({ status: 'error', code: 404, message: 'Not Found' })
+    .json({ status: 'error', code: 404, message: 'Not found' })
 })
 
 module.exports = router
