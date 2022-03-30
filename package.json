@@ -1,6 +1,6 @@
 {
   "name": "goit-nodejs-homeworks",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "private": true,
   "scripts": {
     "start": "cross-env NODE_ENV=production node ./server.js",
@@ -12,6 +12,7 @@
     "cors": "2.8.5",
     "cross-env": "7.0.3",
     "express": "4.17.1",
+    "joi": "17.6.0",
     "morgan": "1.10.0"
   },
   "devDependencies": {
