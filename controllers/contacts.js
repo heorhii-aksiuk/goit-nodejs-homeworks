@@ -1,5 +1,5 @@
 const repository = require('../repository/contacts')
-const { httpStatus } = require('../services/constants')
+const { httpCode } = require('../services/constants')
 const { resStatus, resMessage } = require('../services/messages')
 
 const listContacts = async (req, res, next) => {
@@ -7,7 +7,7 @@ const listContacts = async (req, res, next) => {
     const contacts = await repository.listContacts()
     res.json({
       status: resStatus.SUCCESS,
-      code: httpStatus.OK,
+      code: httpCode.OK,
       data: { contacts },
     })
   } catch (error) {
@@ -18,9 +18,9 @@ const listContacts = async (req, res, next) => {
 const addContact = async (req, res, next) => {
   try {
     const contact = await repository.addContact(req.body)
-    res.status(httpStatus.CREATED).json({
+    res.status(httpCode.CREATED).json({
       status: resStatus.SUCCESS,
-      code: httpStatus.CREATED,
+      code: httpCode.CREATED,
       data: { contact },
     })
   } catch (error) {
@@ -34,13 +34,13 @@ const getContact = async (req, res, next) => {
     if (contact) {
       return res.json({
         status: resStatus.SUCCESS,
-        code: httpStatus.OK,
+        code: httpCode.OK,
         data: { contact },
       })
     }
-    return res.status(httpStatus.NOT_FOUND).json({
+    return res.status(httpCode.NOT_FOUND).json({
       status: resStatus.ERROR,
-      code: httpStatus.NOT_FOUND,
+      code: httpCode.NOT_FOUND,
       message: resMessage.NOT_FOUND,
     })
   } catch (error) {
@@ -54,13 +54,13 @@ const removeContact = async (req, res, next) => {
     if (contact) {
       return res.json({
         status: resStatus.SUCCESS,
-        code: httpStatus.OK,
+        code: httpCode.OK,
         data: { contact },
       })
     }
-    return res.status(httpStatus.NOT_FOUND).json({
+    return res.status(httpCode.NOT_FOUND).json({
       status: resStatus.ERROR,
-      code: httpStatus.NOT_FOUND,
+      code: httpCode.NOT_FOUND,
       message: resMessage.NOT_FOUND,
     })
   } catch (error) {
@@ -74,13 +74,13 @@ const updateContact = async (req, res, next) => {
     if (contact) {
       return res.json({
         status: resStatus.SUCCESS,
-        code: httpStatus.OK,
+        code: httpCode.OK,
         data: { contact },
       })
     }
-    return res.status(httpStatus.NOT_FOUND).json({
+    return res.status(httpCode.NOT_FOUND).json({
       status: resStatus.ERROR,
-      code: httpStatus.NOT_FOUND,
+      code: httpCode.NOT_FOUND,
       message: resMessage.NOT_FOUND,
     })
   } catch (error) {

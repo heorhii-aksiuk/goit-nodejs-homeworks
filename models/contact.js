@@ -26,6 +26,7 @@ const contactSchema = new Schema(
       virtuals: true,
       transform: (doc, ret) => {
         delete ret.favorite
+        delete ret._id
         return ret
       },
     },

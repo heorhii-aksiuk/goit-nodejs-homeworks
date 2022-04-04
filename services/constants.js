@@ -1,4 +1,4 @@
-const httpStatus = {
+const httpCode = {
   OK: 200,
   CREATED: 201,
   NO_CONTENT: 204,
@@ -8,5 +8,5 @@ const httpStatus = {
 }
 
 module.exports = {
-  httpStatus,
+  httpCode,
 }
