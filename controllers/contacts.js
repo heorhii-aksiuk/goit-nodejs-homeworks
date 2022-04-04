@@ -1,10 +1,10 @@
-const repository = require('../repository/contacts')
+const Contact = require('../models/contact')
 const { httpCode } = require('../services/constants')
 const { resStatus, resMessage } = require('../services/messages')
 
 const listContacts = async (req, res, next) => {
   try {
-    const contacts = await repository.listContacts()
+    const contacts = await Contact.find()
     res.json({
       status: resStatus.SUCCESS,
       code: httpCode.OK,
@@ -17,7 +17,7 @@ const listContacts = async (req, res, next) => {
 
 const addContact = async (req, res, next) => {
   try {
-    const contact = await repository.addContact(req.body)
+    const contact = await Contact.create(req.body)
     res.status(httpCode.CREATED).json({
       status: resStatus.SUCCESS,
       code: httpCode.CREATED,
@@ -30,7 +30,7 @@ const addContact = async (req, res, next) => {
 
 const getContact = async (req, res, next) => {
   try {
-    const contact = await repository.getContact(req.params.id)
+    const contact = await Contact.findById(req.params.id)
     if (contact) {
       return res.json({
         status: resStatus.SUCCESS,
@@ -50,7 +50,7 @@ const getContact = async (req, res, next) => {
 
 const removeContact = async (req, res, next) => {
   try {
-    const contact = await repository.removeContact(req.params.id)
+    const contact = await Contact.findByIdAndRemove(req.params.id)
     if (contact) {
       return res.json({
         status: resStatus.SUCCESS,
@@ -70,7 +70,9 @@ const removeContact = async (req, res, next) => {
 
 const updateContact = async (req, res, next) => {
   try {
-    const contact = await repository.updateContact(req.params.id, req.body)
+    const contact = await Contact.findByIdAndUpdate(req.params.id, req.body, {
+      new: true,
+    })
     if (contact) {
       return res.json({
         status: resStatus.SUCCESS,

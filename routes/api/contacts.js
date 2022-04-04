@@ -1,26 +1,39 @@
 const express = require('express')
-const ctrl = require('../../controllers/contacts')
 const { validateBody, validateParams } = require('../../middlewares/validation')
 const {
   schemaCreate,
   schemaUpdate,
+  schemaUpdateFavorite,
   schemaMongoId,
 } = require('../../schemas/contact')
+const {
+  listContacts,
+  addContact,
+  getContact,
+  removeContact,
+  updateContact,
+} = require('../../controllers/contacts')
 
 const router = express.Router()
 
-router.get('/', ctrl.listContacts)
+router.get('/', listContacts)
 
-router.post('/', validateBody(schemaCreate), ctrl.addContact)
+router.post('/', validateBody(schemaCreate), addContact)
 
-router.get('/:id', validateParams(schemaMongoId), ctrl.getContact)
+router.get('/:id', validateParams(schemaMongoId), getContact)
 
-router.delete('/:id', validateParams(schemaMongoId), ctrl.removeContact)
+router.delete('/:id', validateParams(schemaMongoId), removeContact)
 
 router.put(
   '/:id',
   [validateBody(schemaUpdate), validateParams(schemaMongoId)],
-  ctrl.updateContact,
+  updateContact,
+)
+
+router.patch(
+  '/:id/favorite',
+  [validateBody(schemaUpdateFavorite), validateParams(schemaMongoId)],
+  updateContact,
 )
 
 module.exports = router

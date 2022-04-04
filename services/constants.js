@@ -1,3 +1,5 @@
+const PORT = 3000
+
 const httpCode = {
   OK: 200,
   CREATED: 201,
@@ -7,6 +9,18 @@ const httpCode = {
   INTERNAL_SERVER_ERROR: 500,
 }
 
+const nameLength = {
+  MIN: 3,
+  MAX: 30,
+}
+
+const regExp = {
+  PHONE: /^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}$/,
+}
+
 module.exports = {
+  PORT,
   httpCode,
+  nameLength,
+  regExp,
 }

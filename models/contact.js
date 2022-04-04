@@ -1,18 +1,23 @@
-const mongoose = require('mongoose')
-const { Schema, model } = mongoose
-const { contactStatus } = require('../services/messages')
+const { Schema, model } = require('mongoose')
+const { contactStatus, schemaAlert } = require('../services/messages')
+const { nameLength, regExp } = require('../services/constants')
 
 const contactSchema = new Schema(
   {
     name: {
       type: String,
-      required: [true, 'Set name for contact'],
+      min: nameLength.MIN,
+      max: nameLength.MAX,
+      required: [true, schemaAlert.NAME],
     },
     email: {
       type: String,
+      required: [true, schemaAlert.EMAIL],
     },
     phone: {
       type: String,
+      match: regExp.PHONE,
+      required: [true, schemaAlert.PHONE],
     },
     favorite: {
       type: Boolean,
@@ -35,8 +40,7 @@ const contactSchema = new Schema(
 )
 
 contactSchema.virtual('status').get(function () {
-  const { FAVORITE, COMMON } = contactStatus
-  return this.favorite ? FAVORITE : COMMON
+  return this.favorite ? contactStatus.FAVORITE : contactStatus.COMMON
 })
 
 const Contact = model('contact', contactSchema)

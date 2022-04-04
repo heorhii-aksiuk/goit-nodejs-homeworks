@@ -1,4 +1,5 @@
 const mongoose = require('mongoose')
+const { connectionStatus } = require('../services/messages')
 
 const uri = process.env.URI_DB
 
@@ -8,20 +9,20 @@ const db = mongoose.connect(uri, {
 })
 
 mongoose.connection.on('connected', () => {
-  console.log('Connected to DB')
+  console.log(connectionStatus.CONNECTED)
 })
 
 mongoose.connection.on('error', (error) => {
-  console.log(`Mongoose connection error: ${error}`)
+  console.log(`${connectionStatus.ERROR}: ${error}`)
 })
 
 mongoose.connection.on('disconnected', () =>
-  console.log('Disconnected from DB'),
+  console.log(connectionStatus.DISCONNECTED),
 )
 
 process.on('SIGINT', async () => {
   mongoose.connection.close(() => {
-    console.log('Disconnected from DB')
+    console.log(connectionStatus.DISCONNECTED)
     process.exit(1)
   })
 })
