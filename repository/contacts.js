@@ -1,34 +1,20 @@
 const Contact = require('../models/contact')
 
-const listContacts = async () => {
-  const result = Contact.find()
-  return result
-}
+const listContacts = async () => Contact.find()
 
-const addContact = async (payload) => {
-  const result = Contact.create(payload)
-  return result
-}
+const addContact = async (payload) => Contact.create(payload)
 
-const getContactById = async (id) => {
-  const result = Contact.findById(id)
-  return result
-}
+const getContact = async (id) => Contact.findById(id)
 
-const updateContact = async (id, payload) => {
-  const result = Contact.findByIdAndUpdate(id, payload, { new: true })
-  return result
-}
+const removeContact = async (id) => Contact.findByIdAndRemove(id)
 
-const removeContact = async (id) => {
-  const result = Contact.findByIdAndRemove(id)
-  return result
-}
+const updateContact = async (id, payload) =>
+  Contact.findByIdAndUpdate(id, payload, { new: true })
 
 module.exports = {
   listContacts,
   addContact,
-  getContactById,
-  updateContact,
+  getContact,
   removeContact,
+  updateContact,
 }
