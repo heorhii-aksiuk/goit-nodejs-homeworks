@@ -1,6 +1,6 @@
 const repository = require('../repository/contacts')
-const { httpStatus } = require('../libs/constants')
-const { resStatus, resMessage } = require('../libs/messages')
+const { httpStatus } = require('../services/constants')
+const { resStatus, resMessage } = require('../services/messages')
 
 const listContacts = async (req, res, next) => {
   try {
@@ -8,7 +8,7 @@ const listContacts = async (req, res, next) => {
     res.json({
       status: resStatus.SUCCESS,
       code: httpStatus.OK,
-      payload: { contacts },
+      data: { contacts },
     })
   } catch (error) {
     next(error)
@@ -18,10 +18,10 @@ const listContacts = async (req, res, next) => {
 const addContact = async (req, res, next) => {
   try {
     const contact = await repository.addContact(req.body)
-    res.json({
+    res.status(httpStatus.CREATED).json({
       status: resStatus.SUCCESS,
       code: httpStatus.CREATED,
-      payload: { contact },
+      data: { contact },
     })
   } catch (error) {
     next(error)
@@ -35,10 +35,10 @@ const getContact = async (req, res, next) => {
       return res.json({
         status: resStatus.SUCCESS,
         code: httpStatus.OK,
-        payload: { contact },
+        data: { contact },
       })
     }
-    return res.json({
+    return res.status(httpStatus.NOT_FOUND).json({
       status: resStatus.ERROR,
       code: httpStatus.NOT_FOUND,
       message: resMessage.NOT_FOUND,
@@ -52,13 +52,13 @@ const removeContact = async (req, res, next) => {
   try {
     const contact = await repository.removeContact(req.params.id)
     if (contact) {
-      res.json({
+      return res.json({
         status: resStatus.SUCCESS,
         code: httpStatus.OK,
-        payload: { contact },
+        data: { contact },
       })
     }
-    res.json({
+    return res.status(httpStatus.NOT_FOUND).json({
       status: resStatus.ERROR,
       code: httpStatus.NOT_FOUND,
       message: resMessage.NOT_FOUND,
@@ -72,13 +72,13 @@ const updateContact = async (req, res, next) => {
   try {
     const contact = await repository.updateContact(req.params.id, req.body)
     if (contact) {
-      res.json({
+      return res.json({
         status: resStatus.SUCCESS,
         code: httpStatus.OK,
-        payload: { contact },
+        data: { contact },
       })
     }
-    res.json({
+    return res.status(httpStatus.NOT_FOUND).json({
       status: resStatus.ERROR,
       code: httpStatus.NOT_FOUND,
       message: resMessage.NOT_FOUND,

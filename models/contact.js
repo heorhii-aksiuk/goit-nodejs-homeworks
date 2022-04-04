@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 const { Schema, model } = mongoose
-const { contactStatus } = require('../libs/messages')
+const { contactStatus } = require('../services/messages')
 
 const contactSchema = new Schema(
   {
