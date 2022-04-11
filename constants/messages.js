@@ -17,6 +17,7 @@ const resStatus = {
 
 const resMessage = {
   NOT_FOUND: 'Not found',
+  USER_EXIST: 'User already exist',
 }
 
 const contactStatus = {
