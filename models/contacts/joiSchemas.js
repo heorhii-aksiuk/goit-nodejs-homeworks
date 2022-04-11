@@ -6,6 +6,7 @@ const schemaCreate = Joi.object({
   name: Joi.string().min(nameLength.MIN).max(nameLength.MAX).required(),
   email: Joi.string().email().required(),
   phone: Joi.string().pattern(regExp.PHONE).required(),
+  //TODO: owner field?
 })
 
 const schemaUpdate = Joi.object({
