@@ -16,7 +16,7 @@ const signup = async (req, res) => {
   res.status(httpCode.CREATED).json({
     status: resStatus.SUCCESS,
     code: httpCode.CREATED,
-    data: {
+    user: {
       email,
       subscription,
     },

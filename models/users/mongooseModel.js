@@ -4,14 +4,11 @@ const {
   userSchemaAlert: alertMessage,
   subscriptionType,
 } = require('../../constants/messages')
-const { passwordLength } = require('../../constants/variables')
 
 const userSchema = new Schema(
   {
     password: {
       type: String,
-      min: passwordLength.MIN,
-      max: passwordLength.MAX,
       required: [true, alertMessage.PASSWORD],
     },
     email: {
