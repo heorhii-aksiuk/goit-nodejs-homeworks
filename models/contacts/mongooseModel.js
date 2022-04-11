@@ -1,5 +1,8 @@
 const { Schema, model } = require('mongoose')
-const { contactStatus, schemaAlert } = require('../../constants/messages')
+const {
+  contactStatus,
+  contactSchemaAlert: alertMessage,
+} = require('../../constants/messages')
 const { nameLength, regExp } = require('../../constants/variables')
 
 const contactSchema = new Schema(
@@ -8,16 +11,16 @@ const contactSchema = new Schema(
       type: String,
       min: nameLength.MIN,
       max: nameLength.MAX,
-      required: [true, schemaAlert.NAME],
+      required: [true, alertMessage.NAME],
     },
     email: {
       type: String,
-      required: [true, schemaAlert.EMAIL],
+      required: [true, alertMessage.EMAIL],
     },
     phone: {
       type: String,
       match: regExp.PHONE,
-      required: [true, schemaAlert.PHONE],
+      required: [true, alertMessage.PHONE],
     },
     favorite: {
       type: Boolean,

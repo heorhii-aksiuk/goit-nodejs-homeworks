@@ -12,12 +12,13 @@ const signup = async (req, res) => {
     })
   }
   const newUser = await User.create(req.body)
+  const { email, subscription } = newUser
   res.status(httpCode.CREATED).json({
     status: resStatus.SUCCESS,
     code: httpCode.CREATED,
     data: {
-      email: newUser.email,
-      subscription: newUser.subscription,
+      email,
+      subscription,
     },
   })
 }

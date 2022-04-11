@@ -18,9 +18,15 @@ const nameLength = {
   MAX: 30,
 }
 
+const passwordLength = {
+  MIN: 9,
+  MAX: 30,
+}
+
 module.exports = {
   PORT,
   httpCode,
   regExp,
   nameLength,
+  passwordLength,
 }

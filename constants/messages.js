@@ -25,10 +25,21 @@ const contactStatus = {
   COMMON: 'Common',
 }
 
-const schemaAlert = {
+const contactSchemaAlert = {
   NAME: 'Set name for contact',
   EMAIL: 'Set email for contact',
   PHONE: 'Set phone for contact',
+}
+
+const userSchemaAlert = {
+  PASSWORD: 'Password is required',
+  EMAIL: 'Email is required',
+}
+
+const subscriptionType = {
+  STARTER: 'starter',
+  PRO: 'pro',
+  BUSINESS: 'business',
 }
 
 module.exports = {
@@ -37,5 +48,7 @@ module.exports = {
   resStatus,
   resMessage,
   contactStatus,
-  schemaAlert,
+  contactSchemaAlert,
+  userSchemaAlert,
+  subscriptionType,
 }
