@@ -2,8 +2,8 @@ const express = require('express')
 const logger = require('morgan')
 const cors = require('cors')
 const contactsRouter = require('./routes/api/contacts')
-const { httpCode } = require('./services/constants')
-const { resMessage } = require('./services/messages')
+const { httpCode } = require('./constants/variables')
+const { resMessage } = require('./constants/messages')
 
 const app = express()
 const formatsLogger = app.get('env') === 'development' ? 'dev' : 'short'

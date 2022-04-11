@@ -1,4 +1,4 @@
-const { PORT } = require('./constants')
+const { PORT } = require('./variables')
 
 const connectionStatus = {
   CONNECTED: 'Connected to DB',

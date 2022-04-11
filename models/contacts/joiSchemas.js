@@ -1,6 +1,6 @@
 const Joi = require('joi')
 Joi.objectId = require('joi-objectid')(Joi)
-const { nameLength, regExp } = require('../services/constants')
+const { nameLength, regExp } = require('../../constants/variables')
 
 const schemaCreate = Joi.object({
   name: Joi.string().min(nameLength.MIN).max(nameLength.MAX).required(),

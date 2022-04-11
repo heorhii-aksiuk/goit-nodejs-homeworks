@@ -1,11 +1,12 @@
 const express = require('express')
+const ctrWrapper = require('../../middlewares/ctrlWrapper')
 const { validateBody, validateParams } = require('../../middlewares/validation')
 const {
   schemaCreate,
   schemaUpdate,
   schemaUpdateFavorite,
   schemaMongoId,
-} = require('../../schemas/contact')
+} = require('../../models/contacts/joiSchemas')
 const {
   listContacts,
   addContact,
@@ -16,24 +17,24 @@ const {
 
 const router = express.Router()
 
-router.get('/', listContacts)
+router.get('/', ctrWrapper(listContacts))
 
-router.post('/', validateBody(schemaCreate), addContact)
+router.post('/', validateBody(schemaCreate), ctrWrapper(addContact))
 
-router.get('/:id', validateParams(schemaMongoId), getContact)
+router.get('/:id', validateParams(schemaMongoId), ctrWrapper(getContact))
 
-router.delete('/:id', validateParams(schemaMongoId), removeContact)
+router.delete('/:id', validateParams(schemaMongoId), ctrWrapper(removeContact))
 
 router.put(
   '/:id',
   [validateBody(schemaUpdate), validateParams(schemaMongoId)],
-  updateContact,
+  ctrWrapper(updateContact),
 )
 
 router.patch(
   '/:id/favorite',
   [validateBody(schemaUpdateFavorite), validateParams(schemaMongoId)],
-  updateContact,
+  ctrWrapper(updateContact),
 )
 
 module.exports = router

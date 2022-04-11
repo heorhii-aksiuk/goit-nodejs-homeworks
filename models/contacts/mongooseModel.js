@@ -1,6 +1,6 @@
 const { Schema, model } = require('mongoose')
-const { contactStatus, schemaAlert } = require('../services/messages')
-const { nameLength, regExp } = require('../services/constants')
+const { contactStatus, schemaAlert } = require('../../constants/messages')
+const { nameLength, regExp } = require('../../constants/variables')
 
 const contactSchema = new Schema(
   {

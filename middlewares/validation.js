@@ -1,5 +1,5 @@
-const { httpCode } = require('../services/constants')
-const { resStatus } = require('../services/messages')
+const { httpCode } = require('../constants/variables')
+const { resStatus } = require('../constants/messages')
 
 const validateBody = (schema) => async (req, res, next) => {
   try {
