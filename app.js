@@ -6,7 +6,6 @@ const { httpCode } = require('./services/constants')
 const { resMessage } = require('./services/messages')
 
 const app = express()
-
 const formatsLogger = app.get('env') === 'development' ? 'dev' : 'short'
 
 app.use(logger(formatsLogger))
