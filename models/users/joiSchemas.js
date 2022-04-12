@@ -2,7 +2,7 @@ const Joi = require('joi')
 const { passwordLength } = require('../../constants/variables')
 const { userSchemaAlert: alertMessage } = require('../../constants/messages')
 
-const schemaCreate = Joi.object({
+const schemaSignup = Joi.object({
   password: Joi.string()
     .min(passwordLength.MIN)
     .max(passwordLength.MAX)
@@ -15,6 +15,16 @@ const schemaCreate = Joi.object({
   }),
 })
 
+const schemaLogin = Joi.object({
+  password: Joi.string().required().messages({
+    'any.required': alertMessage.PASSWORD,
+  }),
+  email: Joi.string().email().required().messages({
+    'any.required': alertMessage.EMAIL,
+  }),
+})
+
 module.exports = {
-  schemaCreate,
+  schemaSignup,
+  schemaLogin,
 }
