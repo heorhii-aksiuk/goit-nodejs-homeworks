@@ -29,7 +29,7 @@ const getContact = async (req, res) => {
       data: { contact },
     })
   }
-  return res.status(httpCode.NOT_FOUND).json({
+  res.status(httpCode.NOT_FOUND).json({
     status: resStatus.ERROR,
     code: httpCode.NOT_FOUND,
     message: resMessage.NOT_FOUND,
@@ -45,7 +45,7 @@ const removeContact = async (req, res) => {
       data: { contact },
     })
   }
-  return res.status(httpCode.NOT_FOUND).json({
+  res.status(httpCode.NOT_FOUND).json({
     status: resStatus.ERROR,
     code: httpCode.NOT_FOUND,
     message: resMessage.NOT_FOUND,
@@ -63,7 +63,7 @@ const updateContact = async (req, res) => {
       data: { contact },
     })
   }
-  return res.status(httpCode.NOT_FOUND).json({
+  res.status(httpCode.NOT_FOUND).json({
     status: resStatus.ERROR,
     code: httpCode.NOT_FOUND,
     message: resMessage.NOT_FOUND,
