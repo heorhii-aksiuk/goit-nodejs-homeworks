@@ -51,7 +51,21 @@ const login = async (req, res) => {
   })
 }
 
+const logout = async (req, res) => {
+  const user = await User.findById(req.user.id)
+  if (!user) {
+    return res.status(httpCode.UNAUTHORIZED).json({
+      status: resStatus.ERROR,
+      code: httpCode.UNAUTHORIZED,
+      message: resMessage.UNAUTHORIZED,
+    })
+  }
+  await User.findByIdAndUpdate(req.user.id, { token: null })
+  return res.status(httpCode.NO_CONTENT)
+}
+
 module.exports = {
   signup,
   login,
+  logout,
 }
