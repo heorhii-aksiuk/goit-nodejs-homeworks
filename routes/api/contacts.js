@@ -1,4 +1,5 @@
 const express = require('express')
+const auth = require('../../middlewares/auth')
 const ctrWrapper = require('../../middlewares/ctrlWrapper')
 const { validateBody, validateParams } = require('../../middlewares/validation')
 const {
@@ -17,7 +18,7 @@ const {
 
 const router = express.Router()
 
-router.get('/', ctrWrapper(listContacts))
+router.get('/', auth, ctrWrapper(listContacts))
 
 router.post('/', validateBody(schemaCreate), ctrWrapper(addContact))
 

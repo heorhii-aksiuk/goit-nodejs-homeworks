@@ -21,7 +21,8 @@ const resStatus = {
 const resMessage = {
   NOT_FOUND: 'Not found',
   USER_EXIST: 'User already exist',
-  UNAUTHORIZED: 'Email or password is wrong',
+  UNAUTHORIZED: 'Not authorized',
+  EMAIL_OR_PASSWORD_WRONG: 'Email or password is wrong',
 }
 
 //Contacts

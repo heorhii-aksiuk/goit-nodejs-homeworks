@@ -32,11 +32,11 @@ const login = async (req, res) => {
     return res.status(httpCode.UNAUTHORIZED).json({
       status: resStatus.ERROR,
       code: httpCode.UNAUTHORIZED,
-      message: resMessage.UNAUTHORIZED,
+      message: resMessage.EMAIL_OR_PASSWORD_WRONG,
     })
   }
   const { id, email, subscription } = user
-  const token = jwt.sign({ email, subscription }, SECRET_KEY, {
+  const token = jwt.sign({ id, email, subscription }, SECRET_KEY, {
     expiresIn: '1d',
   })
   await User.findByIdAndUpdate(id, { token })
