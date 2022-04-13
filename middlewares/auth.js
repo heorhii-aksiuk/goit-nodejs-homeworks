@@ -16,7 +16,6 @@ const auth = async (req, res, next) => {
     })
   }
   req.user = user
-  console.log(req.user)
   next()
 }
 
