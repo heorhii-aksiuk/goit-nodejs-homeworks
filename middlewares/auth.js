@@ -7,7 +7,6 @@ async function auth(req, res, next) {
   const token = req.get('Authorization')?.split(' ')[1]
   const decodedToken = verifyToken(token)
   const { id } = decodedToken
-
   const user = await User.findById(id)
 
   if (!decodedToken || !user) {
@@ -19,7 +18,6 @@ async function auth(req, res, next) {
   }
 
   req.user = user
-
   next()
 }
 
