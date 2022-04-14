@@ -1,18 +1,18 @@
 const { PORT } = require('./variables')
 
-//DB
+// DB
 const connectionStatus = {
   CONNECTED: 'Connected to DB',
   ERROR: 'Mongoose connection error',
   DISCONNECTED: 'Disconnected from DB',
 }
 
-//Server
+// Server
 const serverStatus = {
   RUNNING: `Server running. Use our API on http://localhost:${PORT}`,
 }
 
-//Response
+// Response
 const resStatus = {
   SUCCESS: 'success',
   ERROR: 'error',
@@ -25,7 +25,7 @@ const resMessage = {
   EMAIL_OR_PASSWORD_WRONG: 'Email or password is wrong',
 }
 
-//Contacts
+// Contacts
 const contactSchemaAlert = {
   NAME: 'Set name for contact',
   EMAIL: 'Set email for contact',
@@ -37,7 +37,7 @@ const contactStatus = {
   COMMON: 'Common',
 }
 
-//User
+// User
 const userSchemaAlert = {
   PASSWORD: 'Password is required',
   EMAIL: 'Email is required',

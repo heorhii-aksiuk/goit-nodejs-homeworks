@@ -1,13 +1,15 @@
 const User = require('../models/users/mongooseModel')
-const verifyToken = require('../services/verifyToken')
+const verifyToken = require('../helpers/verifyToken')
 const { httpCode } = require('../constants/variables')
 const { resStatus, resMessage } = require('../constants/messages')
 
-const auth = async (req, res, next) => {
+async function auth(req, res, next) {
   const token = req.get('Authorization')?.split(' ')[1]
   const decodedToken = verifyToken(token)
   const { id } = decodedToken
+
   const user = await User.findById(id)
+
   if (!decodedToken || !user) {
     return res.status(httpCode.UNAUTHORIZED).json({
       status: resStatus.ERROR,
@@ -15,7 +17,9 @@ const auth = async (req, res, next) => {
       message: resMessage.UNAUTHORIZED,
     })
   }
+
   req.user = user
+
   next()
 }
 

@@ -4,6 +4,7 @@ const ctrWrapper = require('../../middlewares/ctrlWrapper')
 const { validateBody } = require('../../middlewares/validation')
 const { schemaSignup, schemaLogin } = require('../../models/users/joiSchemas')
 const { signup, login, logout, current } = require('../../controllers/users')
+
 const router = express.Router()
 
 router.post('/signup', validateBody(schemaSignup), ctrWrapper(signup))

@@ -17,7 +17,6 @@ const schemaCreate = Joi.object({
   phone: Joi.string().pattern(regExp.PHONE).required().messages({
     'any.required': alertMessage.PHONE,
   }),
-  //TODO: owner field?
 })
 
 const schemaUpdate = Joi.object({

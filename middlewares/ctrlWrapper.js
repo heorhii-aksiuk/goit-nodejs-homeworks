@@ -1,4 +1,4 @@
-const ctrWrapper = (ctrl) => {
+function ctrWrapper(ctrl) {
   return async (res, req, next) => {
     try {
       await ctrl(res, req, next)
