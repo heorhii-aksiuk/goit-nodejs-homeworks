@@ -3,7 +3,10 @@ const { httpCode } = require('../../constants/variables')
 const { resStatus, resMessage } = require('../../constants/messages')
 
 async function getContact(req, res) {
-  const contact = await Contact.findById(req.params.id)
+  const contact = await Contact.findOne({
+    owner: req.user.id,
+    _id: req.params.id,
+  })
 
   if (contact) {
     return res.json({

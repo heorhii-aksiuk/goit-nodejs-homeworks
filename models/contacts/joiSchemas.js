@@ -17,6 +17,7 @@ const schemaCreate = Joi.object({
   phone: Joi.string().pattern(regExp.PHONE).required().messages({
     'any.required': alertMessage.PHONE,
   }),
+  favorite: Joi.boolean(),
 })
 
 const schemaUpdate = Joi.object({

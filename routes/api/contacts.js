@@ -20,21 +20,30 @@ const router = express.Router()
 
 router.get('/', auth, ctrWrapper(listContacts))
 
-router.post('/', validateBody(schemaCreate), ctrWrapper(addContact))
+router.post('/', auth, validateBody(schemaCreate), ctrWrapper(addContact))
 
-router.get('/:id', validateParams(schemaMongoId), ctrWrapper(getContact))
+router.get('/:id', auth, validateParams(schemaMongoId), ctrWrapper(getContact))
 
-router.delete('/:id', validateParams(schemaMongoId), ctrWrapper(removeContact))
+router.delete(
+  '/:id',
+  auth,
+  validateParams(schemaMongoId),
+  ctrWrapper(removeContact),
+)
 
 router.put(
   '/:id',
-  [validateBody(schemaUpdate), validateParams(schemaMongoId)],
+  auth,
+  validateBody(schemaUpdate),
+  validateParams(schemaMongoId),
   ctrWrapper(updateContact),
 )
 
 router.patch(
   '/:id/favorite',
-  [validateBody(schemaUpdateFavorite), validateParams(schemaMongoId)],
+  auth,
+  validateBody(schemaUpdateFavorite),
+  validateParams(schemaMongoId),
   ctrWrapper(updateContact),
 )
 
