@@ -3,10 +3,10 @@ const { httpCode } = require('../../constants/variables')
 const { resStatus, resMessage } = require('../../constants/messages')
 
 async function removeContact(req, res) {
-  const contact = await Contact.findOneAndRemove({
-    owner: req.user.id,
-    _id: req.params.id,
-  })
+  const owner = req.user._id
+  const { id: _id } = req.params
+
+  const contact = await Contact.findOneAndRemove({ owner, _id })
 
   if (contact) {
     return res.json({

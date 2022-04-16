@@ -3,7 +3,9 @@ const { httpCode } = require('../../constants/variables')
 const { resStatus } = require('../../constants/messages')
 
 async function listContacts(req, res) {
-  const contacts = await Contact.find({ owner: req.user.id })
+  const owner = req.user._id
+
+  const contacts = await Contact.find({ owner })
 
   res.json({
     status: resStatus.SUCCESS,

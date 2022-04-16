@@ -3,13 +3,12 @@ const { httpCode } = require('../../constants/variables')
 const { resStatus, resMessage } = require('../../constants/messages')
 
 async function updateContact(req, res) {
-  const contact = await Contact.findOneAndUpdate(
-    { _id: req.params.id },
-    req.body,
-    {
-      new: true,
-    },
-  )
+  const { id: _id } = req.params
+  const { body } = req
+
+  const contact = await Contact.findOneAndUpdate({ _id }, body, {
+    new: true,
+  })
 
   if (contact) {
     return res.json({

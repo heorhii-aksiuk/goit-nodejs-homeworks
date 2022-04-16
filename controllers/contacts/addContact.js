@@ -3,7 +3,10 @@ const { httpCode } = require('../../constants/variables')
 const { resStatus } = require('../../constants/messages')
 
 async function addContact(req, res) {
-  const contact = await Contact.create({ owner: req.user.id, ...req.body })
+  const owner = req.user._id
+  const body = req.body
+
+  const contact = await Contact.create({ owner, ...body })
 
   res.status(httpCode.CREATED).json({
     status: resStatus.SUCCESS,
