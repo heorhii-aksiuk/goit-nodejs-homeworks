@@ -3,7 +3,10 @@ const { httpCode } = require('../../constants/variables')
 const { resStatus, resMessage } = require('../../constants/messages')
 
 async function logout(req, res) {
-  const user = await User.findById(req.user.id)
+  console.log(req.user)
+  const { _id } = req.user
+
+  const user = await User.findById(_id)
 
   if (!user) {
     return res.status(httpCode.UNAUTHORIZED).json({
@@ -13,7 +16,7 @@ async function logout(req, res) {
     })
   }
 
-  await User.findByIdAndUpdate(req.user.id, { token: null })
+  await User.findByIdAndUpdate(_id, { token: null })
 
   res.status(httpCode.NO_CONTENT).json()
 }

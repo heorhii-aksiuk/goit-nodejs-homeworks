@@ -3,7 +3,9 @@ const { httpCode } = require('../../constants/variables')
 const { resStatus, resMessage } = require('../../constants/messages')
 
 async function current(req, res) {
-  const user = await User.findById(req.user.id)
+  const { _id } = req.user
+
+  const user = await User.findById(_id)
 
   if (!user) {
     return res.status(httpCode.UNAUTHORIZED).json({

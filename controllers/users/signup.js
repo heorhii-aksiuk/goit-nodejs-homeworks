@@ -3,7 +3,10 @@ const { httpCode } = require('../../constants/variables')
 const { resStatus, resMessage } = require('../../constants/messages')
 
 async function signup(req, res) {
-  const user = await User.findOne({ email: req.body.email })
+  const { body } = req
+  const { email } = body
+
+  const user = await User.findOne({ email })
 
   if (user) {
     return res.status(httpCode.CONFLICT).json({
@@ -13,8 +16,8 @@ async function signup(req, res) {
     })
   }
 
-  const newUser = await User.create(req.body)
-  const { email, subscription } = newUser
+  const newUser = await User.create(body)
+  const { subscription } = newUser
 
   res.status(httpCode.CREATED).json({
     status: resStatus.SUCCESS,

@@ -6,8 +6,8 @@ const { resStatus, resMessage } = require('../constants/messages')
 async function auth(req, res, next) {
   const token = req.get('Authorization')?.split(' ')[1]
   const decodedToken = verifyToken(token)
-  const { id } = decodedToken
-  const user = await User.findById(id)
+  const { _id } = decodedToken
+  const user = await User.findById(_id)
 
   if (!decodedToken || !user) {
     return res.status(httpCode.UNAUTHORIZED).json({
