@@ -1,11 +1,13 @@
 const express = require('express')
+const auth = require('../../middlewares/auth')
+const ctrWrapper = require('../../middlewares/ctrlWrapper')
 const { validateBody, validateParams } = require('../../middlewares/validation')
 const {
   schemaCreate,
   schemaUpdate,
   schemaUpdateFavorite,
   schemaMongoId,
-} = require('../../schemas/contact')
+} = require('../../models/contacts/joiSchemas')
 const {
   listContacts,
   addContact,
@@ -16,24 +18,33 @@ const {
 
 const router = express.Router()
 
-router.get('/', listContacts)
+router.get('/', auth, ctrWrapper(listContacts))
 
-router.post('/', validateBody(schemaCreate), addContact)
+router.post('/', auth, validateBody(schemaCreate), ctrWrapper(addContact))
 
-router.get('/:id', validateParams(schemaMongoId), getContact)
+router.get('/:id', auth, validateParams(schemaMongoId), ctrWrapper(getContact))
 
-router.delete('/:id', validateParams(schemaMongoId), removeContact)
+router.delete(
+  '/:id',
+  auth,
+  validateParams(schemaMongoId),
+  ctrWrapper(removeContact),
+)
 
 router.put(
   '/:id',
-  [validateBody(schemaUpdate), validateParams(schemaMongoId)],
-  updateContact,
+  auth,
+  validateBody(schemaUpdate),
+  validateParams(schemaMongoId),
+  ctrWrapper(updateContact),
 )
 
 router.patch(
   '/:id/favorite',
-  [validateBody(schemaUpdateFavorite), validateParams(schemaMongoId)],
-  updateContact,
+  auth,
+  validateBody(schemaUpdateFavorite),
+  validateParams(schemaMongoId),
+  ctrWrapper(updateContact),
 )
 
 module.exports = router

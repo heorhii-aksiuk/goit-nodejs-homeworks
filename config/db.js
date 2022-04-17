@@ -1,5 +1,5 @@
 const mongoose = require('mongoose')
-const { connectionStatus } = require('../services/messages')
+const { connectionStatus } = require('../constants/messages')
 
 const uri = process.env.URI_DB
 

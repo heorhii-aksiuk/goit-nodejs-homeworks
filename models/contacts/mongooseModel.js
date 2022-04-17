@@ -1,6 +1,11 @@
+const mongoosePaginate = require('mongoose-paginate-v2')
 const { Schema, model } = require('mongoose')
-const { contactStatus, schemaAlert } = require('../services/messages')
-const { nameLength, regExp } = require('../services/constants')
+
+const {
+  contactStatus,
+  contactSchemaAlert: alertMessage,
+} = require('../../constants/messages')
+const { nameLength, regExp } = require('../../constants/variables')
 
 const contactSchema = new Schema(
   {
@@ -8,20 +13,24 @@ const contactSchema = new Schema(
       type: String,
       min: nameLength.MIN,
       max: nameLength.MAX,
-      required: [true, schemaAlert.NAME],
+      required: [true, alertMessage.NAME],
     },
     email: {
       type: String,
-      required: [true, schemaAlert.EMAIL],
+      required: [true, alertMessage.EMAIL],
     },
     phone: {
       type: String,
       match: regExp.PHONE,
-      required: [true, schemaAlert.PHONE],
+      required: [true, alertMessage.PHONE],
     },
     favorite: {
       type: Boolean,
       default: false,
+    },
+    owner: {
+      type: Schema.Types.ObjectId,
+      ref: 'user',
     },
   },
   {
@@ -42,6 +51,8 @@ const contactSchema = new Schema(
 contactSchema.virtual('status').get(function () {
   return this.favorite ? contactStatus.FAVORITE : contactStatus.COMMON
 })
+
+contactSchema.plugin(mongoosePaginate)
 
 const Contact = model('contact', contactSchema)
 
