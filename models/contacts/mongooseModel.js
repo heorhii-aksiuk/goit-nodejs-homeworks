@@ -1,4 +1,6 @@
+const mongoosePaginate = require('mongoose-paginate-v2')
 const { Schema, model } = require('mongoose')
+
 const {
   contactStatus,
   contactSchemaAlert: alertMessage,
@@ -49,6 +51,8 @@ const contactSchema = new Schema(
 contactSchema.virtual('status').get(function () {
   return this.favorite ? contactStatus.FAVORITE : contactStatus.COMMON
 })
+
+contactSchema.plugin(mongoosePaginate)
 
 const Contact = model('contact', contactSchema)
 

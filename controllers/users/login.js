@@ -20,7 +20,7 @@ async function login(req, res) {
 
   const { _id, subscription } = user
   const token = jwt.sign({ _id, email, subscription }, SECRET_KEY, {
-    expiresIn: '1d',
+    expiresIn: '7d',
   })
 
   await User.findByIdAndUpdate(_id, { token })
