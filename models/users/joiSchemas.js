@@ -37,7 +37,18 @@ const schemaLogin = Joi.object({
   ),
 })
 
+const schemaUpdateSubscription = Joi.object({
+  subscription: Joi.string()
+    .valid(
+      subscriptionType.STARTER,
+      subscriptionType.PRO,
+      subscriptionType.BUSINESS,
+    )
+    .required(),
+})
+
 module.exports = {
   schemaSignup,
   schemaLogin,
+  schemaUpdateSubscription,
 }
