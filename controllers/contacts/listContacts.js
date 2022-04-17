@@ -4,9 +4,10 @@ const { resStatus } = require('../../constants/messages')
 
 async function listContacts(req, res) {
   const owner = req.user._id
-  const { page = 1, limit = 10 } = req.query
+  const { page = 1, limit = 10, favorite } = req.query
+  const query = favorite ? { owner, favorite } : { owner }
 
-  const contacts = await Contact.paginate({ owner }, { page, limit })
+  const contacts = await Contact.paginate(query, { page, limit })
 
   res.json({
     status: resStatus.SUCCESS,
