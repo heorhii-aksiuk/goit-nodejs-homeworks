@@ -1,10 +1,10 @@
 const express = require('express')
 const logger = require('morgan')
 const cors = require('cors')
-const usersRouter = require('./routes/api/users')
-const contactsRouter = require('./routes/api/contacts')
-const { httpCode } = require('./constants/variables')
-const { resMessage } = require('./constants/messages')
+const usersRouter = require('./src/routes/api/users')
+const contactsRouter = require('./src/routes/api/contacts')
+const { httpCode } = require('./src/constants/variables')
+const { resMessage } = require('./src/constants/messages')
 
 const app = express()
 const formatsLogger = app.get('env') === 'development' ? 'dev' : 'short'
