@@ -1,5 +1,11 @@
 const PORT = 3000
 
+const limit = {
+  DURATION: 15 * 60 * 1000,
+  NUMBER_OF_REQUESTS: 100,
+  JSON_SIZE: 10000,
+}
+
 const httpCode = {
   OK: 200,
   CREATED: 201,
@@ -8,6 +14,7 @@ const httpCode = {
   UNAUTHORIZED: 401,
   NOT_FOUND: 404,
   CONFLICT: 409,
+  TOO_MANY_REQUESTS: 429,
   INTERNAL_SERVER_ERROR: 500,
 }
 
@@ -27,6 +34,7 @@ const passwordLength = {
 
 module.exports = {
   PORT,
+  limit,
   httpCode,
   regExp,
   nameLength,
