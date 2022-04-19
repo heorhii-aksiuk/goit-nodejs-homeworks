@@ -1,5 +1,6 @@
-const { Schema, model } = require('mongoose')
 const bcrypt = require('bcryptjs')
+const gravatar = require('gravatar')
+const { Schema, model } = require('mongoose')
 const {
   userSchemaAlert: alertMessage,
   subscriptionType,
@@ -24,6 +25,12 @@ const userSchema = new Schema(
         subscriptionType.BUSINESS,
       ],
       default: subscriptionType.STARTER,
+    },
+    avatarURL: {
+      type: String,
+      default: function () {
+        return gravatar.url(this.email, { s: '250' }, true)
+      },
     },
     token: {
       type: String,

@@ -18,7 +18,7 @@ async function login(req, res) {
     })
   }
 
-  const { _id, subscription } = user
+  const { _id, subscription, avatarURL } = user
   const token = jwt.sign({ _id, email, subscription }, SECRET_KEY, {
     expiresIn: '7d',
   })
@@ -32,6 +32,7 @@ async function login(req, res) {
     user: {
       email,
       subscription,
+      avatarURL,
     },
   })
 }
