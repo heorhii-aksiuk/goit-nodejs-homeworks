@@ -50,6 +50,12 @@ const subscriptionType = {
   BUSINESS: 'business',
 }
 
+// Errors
+
+const errorMessage = {
+  UPLOAD_IMAGE: 'Only images are allowed',
+}
+
 module.exports = {
   connectionStatus,
   serverStatus,
@@ -59,4 +65,5 @@ module.exports = {
   contactStatus,
   userSchemaAlert,
   subscriptionType,
+  errorMessage,
 }

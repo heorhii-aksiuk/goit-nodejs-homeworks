@@ -4,6 +4,7 @@ const limit = {
   DURATION: 15 * 60 * 1000,
   NUMBER_OF_REQUESTS: 100,
   JSON_SIZE: 10000,
+  IMAGE_SIZE: 500000,
 }
 
 const httpCode = {

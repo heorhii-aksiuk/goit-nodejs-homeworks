@@ -25,6 +25,8 @@ router.post('/logout', auth, ctrWrapper(logout))
 
 router.get('/current', auth, ctrWrapper(current))
 
+router.post('/avatars', auth, ctrWrapper())
+
 router.patch(
   '/subscription',
   auth,
