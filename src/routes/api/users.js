@@ -1,5 +1,6 @@
 const express = require('express')
 const auth = require('../../middlewares/auth')
+const upload = require('../../middlewares/upload')
 const ctrWrapper = require('../../middlewares/ctrlWrapper')
 const { validateBody } = require('../../middlewares/validation')
 const {
@@ -25,7 +26,7 @@ router.post('/logout', auth, ctrWrapper(logout))
 
 router.get('/current', auth, ctrWrapper(current))
 
-router.post('/avatars', auth, ctrWrapper())
+router.post('/avatars', auth, upload.single('avatar'))
 
 router.patch(
   '/subscription',

@@ -4,7 +4,7 @@ const limit = {
   DURATION: 15 * 60 * 1000,
   NUMBER_OF_REQUESTS: 100,
   JSON_SIZE: 10000,
-  IMAGE_SIZE: 500000,
+  IMAGE_SIZE: 1000000,
 }
 
 const httpCode = {
@@ -33,6 +33,11 @@ const passwordLength = {
   MAX: 30,
 }
 
+const avatarSize = {
+  WIDTH: 250,
+  HIGHT: 250,
+}
+
 module.exports = {
   PORT,
   limit,
@@ -40,4 +45,5 @@ module.exports = {
   regExp,
   nameLength,
   passwordLength,
+  avatarSize,
 }
