@@ -1,7 +1,7 @@
 const Jimp = require('jimp')
 const { avatarSize } = require('../constants/variables')
 
-async function transform(filePath) {
+async function avatarTransform(filePath) {
   const picture = await Jimp.read(filePath)
   await picture
     .cover(
@@ -12,4 +12,4 @@ async function transform(filePath) {
     .writeAsync(filePath)
 }
 
-module.exports = transform
+module.exports = avatarTransform

@@ -13,6 +13,7 @@ const {
   login,
   logout,
   current,
+  updateAvatar,
   updateSubscription,
 } = require('../../controllers/users')
 
@@ -26,7 +27,7 @@ router.post('/logout', auth, ctrWrapper(logout))
 
 router.get('/current', auth, ctrWrapper(current))
 
-router.post('/avatars', auth, upload.single('avatar'))
+router.post('/avatars', auth, upload.single('avatar'), ctrWrapper(updateAvatar))
 
 router.patch(
   '/subscription',
