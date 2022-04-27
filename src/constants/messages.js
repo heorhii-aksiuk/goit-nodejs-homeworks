@@ -23,6 +23,7 @@ const resMessage = {
   USER_EXIST: 'User already exist',
   UNAUTHORIZED: 'Not authorized',
   EMAIL_OR_PASSWORD_WRONG: 'Email or password is wrong',
+  TOO_MANY_REQUESTS: 'Too many requests, please try again later',
 }
 
 // Contacts
@@ -49,6 +50,12 @@ const subscriptionType = {
   BUSINESS: 'business',
 }
 
+// Errors
+
+const errorMessage = {
+  UPLOAD_IMAGE: 'Only images are allowed',
+}
+
 module.exports = {
   connectionStatus,
   serverStatus,
@@ -58,4 +65,5 @@ module.exports = {
   contactStatus,
   userSchemaAlert,
   subscriptionType,
+  errorMessage,
 }

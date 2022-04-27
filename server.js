@@ -1,7 +1,7 @@
 const app = require('./app')
-const db = require('./config/db')
-const { PORT } = require('./constants/variables')
-const { serverStatus } = require('./constants/messages')
+const db = require('./src/config/db')
+const { PORT } = require('./src/constants/variables')
+const { serverStatus } = require('./src/constants/messages')
 
 db.then(() => {
   app.listen(PORT, () => {
