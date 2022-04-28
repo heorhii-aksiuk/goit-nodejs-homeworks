@@ -23,6 +23,8 @@ const resMessage = {
   USER_EXIST: 'User already exist',
   UNAUTHORIZED: 'Not authorized',
   SUCCESS_VERIFY: 'Verification successful',
+  VERIFY_SENT: 'Verification email sent',
+  ALREADY_VERIFY: 'Verification has already been passed',
   EMAIL_OR_PASSWORD_WRONG: 'Email or password is wrong',
   TOO_MANY_REQUESTS: 'Too many requests, please try again later',
 }

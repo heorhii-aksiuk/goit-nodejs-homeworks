@@ -1,5 +1,5 @@
-const User = require('../../models/users/mongooseModel')
 const { v4: uuid } = require('uuid')
+const User = require('../../models/users/mongooseModel')
 const verifyEmail = require('../../helpers/verifyEmail')
 const { httpCode } = require('../../constants/variables')
 const { resStatus, resMessage } = require('../../constants/messages')
