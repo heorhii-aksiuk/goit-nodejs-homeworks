@@ -1,4 +1,6 @@
 const User = require('../../models/users/mongooseModel')
+const { v4: uuid } = require('uuid')
+const verifyEmail = require('../../helpers/verifyEmail')
 const { httpCode } = require('../../constants/variables')
 const { resStatus, resMessage } = require('../../constants/messages')
 
@@ -16,7 +18,9 @@ async function signup(req, res) {
     })
   }
 
-  const newUser = await User.create(body)
+  const verificationToken = uuid()
+  const newUser = await User.create({ verificationToken, ...body })
+  await verifyEmail(email, verificationToken)
   const { subscription, avatarURL } = newUser
 
   res.status(httpCode.CREATED).json({
