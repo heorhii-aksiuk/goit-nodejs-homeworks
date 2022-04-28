@@ -3,7 +3,6 @@ const { httpCode } = require('../../constants/variables')
 const { resStatus, resMessage } = require('../../constants/messages')
 
 async function logout(req, res) {
-  console.log(req.user)
   const { _id } = req.user
 
   const user = await User.findById(_id)

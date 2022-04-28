@@ -10,6 +10,7 @@ const {
 } = require('../../models/users/joiSchemas')
 const {
   signup,
+  verify,
   login,
   logout,
   current,
@@ -20,6 +21,8 @@ const {
 const router = express.Router()
 
 router.post('/signup', validateBody(schemaSignup), ctrWrapper(signup))
+
+router.get('/verify/:verificationToken', ctrWrapper(verify))
 
 router.post('/login', validateBody(schemaLogin), ctrWrapper(login))
 

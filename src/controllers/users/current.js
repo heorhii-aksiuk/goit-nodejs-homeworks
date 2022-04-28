@@ -17,7 +17,7 @@ async function current(req, res) {
 
   const { email, subscription } = user
 
-  res.status(httpCode.OK).json({
+  res.json({
     status: resStatus.SUCCESS,
     code: httpCode.OK,
     user: {

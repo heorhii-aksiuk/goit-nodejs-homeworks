@@ -25,7 +25,7 @@ async function login(req, res) {
 
   await User.findByIdAndUpdate(_id, { token })
 
-  res.status(httpCode.OK).json({
+  res.json({
     status: resStatus.SUCCESS,
     code: httpCode.OK,
     token,
