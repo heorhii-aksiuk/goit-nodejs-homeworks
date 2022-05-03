@@ -23,6 +23,12 @@ const schemaSignup = Joi.object({
   ),
 })
 
+const schemaVerify = Joi.object({
+  email: Joi.string().email().required().messages({
+    'any.required': alertMessage.EMAIL,
+  }),
+})
+
 const schemaLogin = Joi.object({
   password: Joi.string().required().messages({
     'any.required': alertMessage.PASSWORD,
@@ -49,6 +55,7 @@ const schemaUpdateSubscription = Joi.object({
 
 module.exports = {
   schemaSignup,
+  schemaVerify,
   schemaLogin,
   schemaUpdateSubscription,
 }
