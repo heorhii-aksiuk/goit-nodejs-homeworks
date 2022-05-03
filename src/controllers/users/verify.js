@@ -22,7 +22,7 @@ async function verify(req, res) {
   res.json({
     status: resStatus.SUCCESS,
     code: httpCode.OK,
-    message: resMessage.SUCCESS_VERIFY,
+    message: resMessage.VERIFY_SUCCESS,
   })
 }
 
